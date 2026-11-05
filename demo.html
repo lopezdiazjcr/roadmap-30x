@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel de demo · Roadmap 30X</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div data-topbar></div>
+  <main class="demo">
+    <section>
+      <p class="eyebrow">Panel de demo</p>
+      <h1 style="font-size:36px;margin-top:8px">Roadmap 30X</h1>
+      <p style="margin-top:12px;color:#525252">Réplica del <a href="https://www.acquisition.com/roadmap" target="_blank" rel="noopener">Scaling Roadmap de Acquisition.com</a>. El formulario de 5 pantallas asigna una de 10 etapas según el número de personas del equipo y entrega la guía PDF de esa etapa. Nada sale del navegador mientras <code>webhookUrl</code> esté vacío.</p>
+      <p style="margin-top:12px"><a class="btn btn-k" href="index.html">Abrir la landing</a> <a class="btn btn-ghost" style="color:#0A0A0A" href="index.html?start=1">Ir directo al formulario</a></p>
+    </section>
+    <section>
+      <h2 style="font-size:22px">Las 10 etapas</h2>
+      <table><thead><tr><th>Etapa</th><th>Personas (lo que decide)</th><th>Rol</th><th>Cierre</th><th>Ver</th></tr></thead><tbody id="stages"></tbody></table>
+    </section>
+    <section>
+      <h2 style="font-size:22px">Leads guardados en este navegador <button class="btn btn-ghost" style="color:#0A0A0A;min-height:36px;padding:0 14px;font-size:12px;margin-left:10px" type="button" id="clear">Borrar</button></h2>
+      <table><thead><tr><th>Cuándo</th><th>Quién</th><th>Contacto</th><th>Etapa</th><th>Facturación</th><th>Industria</th></tr></thead><tbody id="leads"></tbody></table>
+      <p id="none" style="color:#8A8A8A;margin-top:10px">Todavía no hay leads. Llena el formulario y vuelve.</p>
+    </section>
+  </main>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/lead.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script>
+    (function () {
+      var esc = RM_LEAD.esc;
+      document.getElementById("stages").innerHTML = RM_ETAPAS.map(function (e) {
+        return "<tr><td><b>" + e.etapa + " · " + esc(e.nombre) + "</b><br><span style='color:#8A8A8A'>" + esc(e.titulo) + "</span></td><td>" + esc(e.personas) + "</td><td>" + esc(e.rol) + "</td><td>" + (e.cierre === "inmersivo" ? "Inmersivo 30X" : "Seguir la cuenta") +
+          "</td><td class='links'><a href='gracias.html?etapa=" + e.etapa + "'>gracias</a><a href='correo.html?etapa=" + e.etapa + "'>correo</a><a href='" + esc(e.pdf) + "' target='_blank'>PDF</a></td></tr>";
+      }).join("");
+      function leads() {
+        var all = RM_LEAD.all();
+        document.getElementById("none").hidden = all.length > 0;
+        document.getElementById("leads").innerHTML = all.map(function (l) {
+          return "<tr><td>" + esc(new Date(l.at).toLocaleString("es")) + "</td><td>" + esc((l.firstname || "") + " " + (l.lastname || "")) + "<br><span style='color:#8A8A8A'>" + esc((l.city || "") + (l.country ? ", " + l.country : "")) + "</span></td><td>" + esc(l.email || "") + "<br>" + esc(l.phone || "") + "</td><td>" + l.stage + " · " + esc(l.stageName || "") + "</td><td>" + esc(l.annual_business_revenue || "") + "</td><td>" + esc(l.industry || "") + "</td></tr>";
+        }).join("");
+      }
+      document.getElementById("clear").addEventListener("click", function () { RM_LEAD.clear(); leads(); });
+      leads();
+    })();
+  </script>
+</body>
+</html>

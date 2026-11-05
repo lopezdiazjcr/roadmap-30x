@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roadmap 30X · tu mapa de crecimiento personalizado</title>
+  <meta name="description" content="Recibe gratis tu Roadmap 30X personalizado en menos de 30 segundos: la etapa en la que está tu negocio, lo que la frena y qué hacer para pasar a la siguiente.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="Roadmap 30X · tu mapa de crecimiento personalizado">
+  <meta property="og:description" content="Tu negocio está en una de 10 etapas. Te decimos en cuál, qué lo frena y cómo pasar a la siguiente. Gratis, en 30 segundos.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://lopezdiazjcr.github.io/roadmap-30x/assets/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div data-announce></div>
+  <div data-topbar></div>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>Recibe gratis tu <span class="mark">Roadmap 30X</span> personalizado… en menos de 30 segundos.</h1>
+        <p class="sub">Tu negocio está en una de 10 etapas. Te decimos en cuál estás, qué la frena y qué tienes que lograr para pasar a la siguiente.</p>
+      </div>
+      <div class="carousel" id="carousel" aria-label="Las 10 etapas del Roadmap 30X"></div>
+      <div class="dots" id="dots" role="tablist" aria-label="Elegir etapa"></div>
+
+      <div class="wrap">
+        <form class="formcard" id="rmform" novalidate autocomplete="on"></form>
+
+        <div class="bullets">
+          <p><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" fill="#D6F84C" stroke="#0A0A0A" stroke-width="1.2" stroke-linejoin="round"/></svg>Tu roadmap en menos de 30 segundos</p>
+          <p><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" fill="#D6F84C" stroke="#0A0A0A" stroke-width="1.2" stroke-linejoin="round"/></svg>10 etapas, una guía completa para cada una</p>
+        </div>
+
+        <p class="consent">Al enviar tus datos aceptas que 30X te contacte por teléfono, WhatsApp o correo con la información que nos diste, incluso con mensajes automáticos. No vendemos tu información. También aceptas nuestra <a href="https://30x.com/legal/politica-de-privacidad" target="_blank" rel="noopener">Política de privacidad</a> y nuestros términos de servicio.</p>
+      </div>
+    </section>
+
+    <section class="proof">
+      <div class="wrap">
+        <div class="box">
+          <img src="assets/img/portadas/etapa-4.png" alt="Portada de una guía 30X por etapa" width="110" height="142">
+          <blockquote id="quote"></blockquote>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-footer></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/lead.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script>
+    (function () {
+      var q = window.RM_CONFIG.quote, esc = window.RM_LEAD.esc;
+      document.getElementById("quote").innerHTML = "“" + esc(q.text) + "”<cite>" + esc(q.author) + " <span>· " + esc(q.role) + "</span></cite>";
+    })();
+  </script>
+  <script src="assets/js/form.js"></script>
+</body>
+</html>
